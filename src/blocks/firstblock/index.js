@@ -1,6 +1,5 @@
-const registerBlockType = wp.blocks.registerBlockType;
-const __ = wp.i18n.__;
-const el = wp.element;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'wpbloqs/firstblock', {
 	title: __( 'First Block', 'wpbloqs' ),
@@ -12,10 +11,11 @@ registerBlockType( 'wpbloqs/firstblock', {
 		src: 'admin-generic',
 	},
 	keywords: [ __( 'photo', 'wpbloqs' ), __( 'media', 'wpbloqs' ) ],
-	edit: () => {
-		return el.createElement( 'h1', null, 'First Block Edit' );
+	edit: ( props ) => {
+		const classes = `${ props.className } red-text`;
+		return <h2 className={ classes }>First Block Edit</h2>;
 	},
-	save: () => {
-		return el.createElement( 'h1', null, 'First Block Save' );
+	save: ( props ) => {
+		return <h2 className="red-text">First Block HERE Save</h2>;
 	},
 } );

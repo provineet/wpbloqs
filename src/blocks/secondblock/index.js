@@ -1,7 +1,5 @@
-import './style.scss';
-
-const { registerBlockType } = wp.blocks;
-const { __ } = wp.i18n;
+import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'wpbloqs/secondblock', {
 	title: __( 'Second Block', 'wpbloqs' ),
@@ -26,9 +24,9 @@ registerBlockType( 'wpbloqs/secondblock', {
 	keywords: [ __( 'photo', 'wpbloqs' ), __( 'media', 'wpbloqs' ) ],
 	edit: ( props ) => {
 		const classes = `${ props.className } red-text`;
-		return <h2>Second Block Edit</h2>;
+		return <h2 className={ classes }>Second Block Edit</h2>;
 	},
 	save: ( props ) => {
-		return <h2>Second Block Save</h2>;
+		return <h2 className="red-text">Second Block HERE Save</h2>;
 	},
 } );

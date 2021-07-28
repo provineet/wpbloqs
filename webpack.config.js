@@ -3,15 +3,19 @@ const { argv } = require( 'process' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
 function isDevelopment() {
 	return argv.mode === 'development';
 }
 
 module.exports = {
-	entry: './src/editor.js',
+	entry: {
+		editor: './src/editor.js',
+		script: './src/script.js',
+	},
 	output: {
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 		path: path.resolve( __dirname, 'dist' ),
 		clean: true,
 	},
@@ -19,8 +23,10 @@ module.exports = {
 	devtool: isDevelopment() ? 'cheap-module-eval-source-map' : 'source-map',
 	plugins: [
 		new MiniCssExtractPlugin( {
-			filename: 'wpbloqs.css',
+			filename: ( { chunk } ) =>
+				chunk.name === 'script' ? 'style.css' : '[name].css',
 		} ),
+		new DependencyExtractionWebpackPlugin(),
 	],
 	module: {
 		rules: [
@@ -63,5 +69,8 @@ module.exports = {
 	},
 	optimization: {
 		minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ],
+	},
+	externals: {
+		jquery: 'jQuery',
 	},
 };

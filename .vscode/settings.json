@@ -1,0 +1,28 @@
+{
+    "editor.formatOnSave": true,
+    "[php]": {
+        "editor.formatOnSave": false
+    },
+    "phpcbf.executablePath": "./vendor/bin/phpcbf",
+    "phpcbf.standard": "WordPress",
+    "phpfmt.enable_auto_align": true,
+    "phpfmt.passes": [
+        "AlignPHPCode",
+        "LongArray",
+        "SpaceAroundParentheses",
+        "MergeElseIf",
+        "PrettyPrintDocBlocks",
+        "GeneratePHPDoc",
+        "ConvertOpenTagWithEcho",
+        "AutoSemicolon",
+        "YodaComparisons",
+        "StripExtraCommaInArray"
+    ],
+    "beautify.options": {
+        "end_with_newline": true,
+        "space_in_empty_paren": true,
+        "space_after_anon_function": true,
+        "space_before_conditional": true
+    },
+    "prettier.useEditorConfig": false
+}

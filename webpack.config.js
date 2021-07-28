@@ -1,18 +1,27 @@
 const path = require( 'path' );
 const { argv } = require( 'process' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
 
 function isDevelopment() {
 	return argv.mode === 'development';
 }
 
 module.exports = {
-	entry: './src/index.js',
+	entry: './src/editor.js',
 	output: {
+		filename: '[name].bundle.js',
 		path: path.resolve( __dirname, 'dist' ),
-		filename: 'panelscripts.js',
+		clean: true,
 	},
 	mode: argv.mode,
 	devtool: isDevelopment() ? 'cheap-module-eval-source-map' : 'source-map',
+	plugins: [
+		new MiniCssExtractPlugin( {
+			filename: 'wpbloqs.css',
+		} ),
+	],
 	module: {
 		rules: [
 			{
@@ -28,14 +37,31 @@ module.exports = {
 			{
 				test: /\.(sc|sa|c)ss$/,
 				use: [
-					// Creates `style` nodes from JS strings
-					'style-loader',
+					MiniCssExtractPlugin.loader,
 					// Translates CSS into CommonJS
 					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									[
+										'autoprefixer',
+										{
+											// autoprefixer Options
+										},
+									],
+								],
+							},
+						},
+					},
 					// Compiles Sass to CSS
 					'sass-loader',
 				],
 			},
 		],
+	},
+	optimization: {
+		minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ],
 	},
 };

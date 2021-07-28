@@ -1,0 +1,17 @@
+{
+    "name": "vineet/wpbloqs",
+    "description": "Gutenberg blocks starter kit",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vineet Vemra",
+            "email": "vineet@blogohblog.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "wp-coding-standards/wpcs": "dev-develop",
+        "php-stubs/wordpress-stubs": "dev-master"
+    }
+}

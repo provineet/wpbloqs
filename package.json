@@ -9,15 +9,21 @@
 	},
 	"author": "Vineet Verma",
 	"license": "GPL-2.0-only",
+	"prettier": "@wordpress/prettier-config",
+	"browserslist": [
+		"extends @wordpress/browserslist-config"
+	],
 	"devDependencies": {
 		"@babel/core": "^7.14.8",
 		"@babel/preset-env": "^7.14.8",
-		"@wordpress/babel-preset-default": "^6.3.0",
-		"@wordpress/blocks": "^10.0.0",
+		"@wordpress/babel-preset-default": "^6.3.1",
+		"@wordpress/blocks": "^11.0.0",
 		"@wordpress/browserslist-config": "^4.1.0",
-		"@wordpress/dependency-extraction-webpack-plugin": "^3.2.0",
+		"@wordpress/components": "^15.0.0",
+		"@wordpress/dependency-extraction-webpack-plugin": "^3.2.1",
+		"@wordpress/editor": "^11.0.0",
 		"@wordpress/eslint-plugin": "^9.1.0",
-		"@wordpress/i18n": "^4.2.0",
+		"@wordpress/i18n": "^4.2.1",
 		"@wordpress/prettier-config": "^1.1.0",
 		"autoprefixer": "^10.3.1",
 		"babel-loader": "^8.2.2",
@@ -32,15 +38,7 @@
 		"sass-loader": "^12.1.0",
 		"style-loader": "^3.2.1",
 		"terser-webpack-plugin": "^5.1.4",
-		"webpack": "^5.47.0",
+		"webpack": "^5.47.1",
 		"webpack-cli": "^4.7.2"
-	},
-	"dependencies": {
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
-	},
-	"prettier": "@wordpress/prettier-config",
-	"browserslist": [
-		"extends @wordpress/browserslist-config"
-	]
+	}
 }
